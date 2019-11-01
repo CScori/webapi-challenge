@@ -17,6 +17,9 @@ console.log('TEST')
 const express = require('express')
 const server = express()
 
+const port = 3000
+server.listen(port, () => console.log(`\n RUNNING ON ${port} SERVER \n`))
+
 server.get('/', (req,res) => {
     res.send('Server is Available')
 })

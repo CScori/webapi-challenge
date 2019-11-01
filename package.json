@@ -4,7 +4,9 @@
   "description": "Web API Challenge",
   "main": "index.js",
   "scripts": {
-    "run": "nodemon index.js"
+    "run": "nodemon index.js",
+    "start": "node.js"
+
   },
   "repository": {
     "type": "git",
