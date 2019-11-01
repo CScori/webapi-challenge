@@ -15,11 +15,11 @@ Go code!
 
 console.log('TEST')
 const express = require('express')
+const actionRouter = require('./data/action-router.js')
 const server = express()
-
 const port = 3000
 server.listen(port, () => console.log(`\n RUNNING ON ${port} SERVER \n`))
-
+server.use(express.json())
+server.use('/api/actions', actionRouter)
 server.get('/', (req,res) => {
-    res.send('Server is Available')
-})
+    res.send('Server is Available')})
