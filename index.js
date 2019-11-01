@@ -12,3 +12,11 @@ I need this code, just don't know where, perhaps should make some middleware, do
 
 Go code!
 */
+
+console.log('TEST')
+const express = require('express')
+const server = express()
+
+server.get('/', (req,res) => {
+    res.send('Server is Available')
+})
