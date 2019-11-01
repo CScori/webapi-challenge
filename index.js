@@ -16,7 +16,8 @@ Go code!
 console.log('TEST')
 const express = require('express')
 const helmet = require('helmet')
-const actionRouter = require('./data/action-router.js')
+const actionRouter = require('./data/Routes/action-router.js')
+const projectRouter = require('./data/Routes/project-router.js')
 //imports
 const server = express()
 const port = 3000
@@ -26,6 +27,7 @@ server.listen(port, () => console.log(`\n RUNNING ON ${port} SERVER \n`))
 server.use(express.json())
 server.use(helmet())
 server.use('/api/actions', actionRouter)
+server.use('/api/project', projectRouter)
 //use
 server.get('/', (req,res) => {
     res.send('Server is Available')})
