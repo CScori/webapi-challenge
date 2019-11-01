@@ -21,6 +21,23 @@ router.get('/:id', validId, (req, res) => {
         res.status(500).json({ error: `The action information could not be retrieved error: ${err}.` })
     })
 })
+router.delete('/:id', validId, (req, res) => {
+    const needId = req.params.id
+    Actions.get(needId)
+    .then(action => {
+        Actions.remove(needId)
+        .then (resps => {
+            if (resps === 1) {
+                res.status(204).json({message: 'deleted'})
+            } else {
+                res.status(500).json({message: 'not deleted'})
+            }
+        })
+    })
+    .catch(err => {
+        res.status(500).json({ error: `The action could not be deleted error: ${err}.` })
+    })
+})
 function validId(req, res, next) {
     const id = req.params.id
 
