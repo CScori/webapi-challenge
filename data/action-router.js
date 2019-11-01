@@ -1,7 +1,7 @@
-const router = require('express').Router()
+const a_router = require('express').Router()
 const Actions = require('./helpers/actionModel')
 
-router.get('/', (req, res) => {
+a_router.get('/', (req, res) => {
 
     Actions.get()
         .then(actions => {
@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
             res.status(500).json({ error: `The action information could not be retrieved error: ${err}.` })
         })
 })
-router.get('/:id', validId, (req, res) => {
+a_router.get('/:id', validId, (req, res) => {
     const need = req.params.id
     Actions.get(need)
         .then(action => {
@@ -21,7 +21,7 @@ router.get('/:id', validId, (req, res) => {
             res.status(500).json({ error: `The action information could not be retrieved error: ${err}.` })
         })
 })
-router.delete('/:id', validId, (req, res) => {
+a_router.delete('/:id', validId, (req, res) => {
     const needId = req.params.id
     Actions.get(needId)
         .then(action => {
@@ -53,7 +53,7 @@ function validId(req, res, next) {
         )
 };
 
-router.post('/', validAction, (req, res) => {
+a_router.post('/', validAction, (req, res) => {
     Actions.insert(req.body)
         .then(newaction => {
             res.status(201).json(newaction)
@@ -62,7 +62,20 @@ router.post('/', validAction, (req, res) => {
             res.status(500).json({ error: `Server could not create action. Error: ${err}` })
         })
 });
-
+a_router.put('/:id', validAction, (req, res) => {
+    const id = req.params.id
+    Actions.update(id, req.body)
+    .then( update => {
+        if (update) {
+            res.status(200).json(update)
+        } else {
+            res.status(500).json({ error: 'Server could not update action.'})
+        }
+    })
+    .catch(err => {
+        res.status(500).json({ error: `Server could not update action. Error: ${err}` })
+    })
+})
 function validAction(req, res, next) {
     if (req.body) {
         if (req.body.project_id && req.body.description && req.body.notes) {
@@ -75,4 +88,4 @@ function validAction(req, res, next) {
     }
 
 };
-module.exports = router
+module.exports = a_router

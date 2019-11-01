@@ -4,9 +4,8 @@
   "description": "Web API Challenge",
   "main": "index.js",
   "scripts": {
-    "run": "nodemon index.js",
+    "server": "nodemon index.js",
     "start": "node.js"
-
   },
   "repository": {
     "type": "git",
@@ -30,6 +29,7 @@
     "sqlite3": "^4.0.9"
   },
   "devDependencies": {
-    "knex-cleaner": "^1.2.1"
+    "knex-cleaner": "^1.2.1",
+    "nodemon": "^1.19.4"
   }
 }

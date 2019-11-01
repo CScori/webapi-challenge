@@ -15,11 +15,18 @@ Go code!
 
 console.log('TEST')
 const express = require('express')
+const helmet = require('helmet')
 const actionRouter = require('./data/action-router.js')
+//imports
 const server = express()
 const port = 3000
+//server sets
 server.listen(port, () => console.log(`\n RUNNING ON ${port} SERVER \n`))
+//listen
 server.use(express.json())
+server.use(helmet())
 server.use('/api/actions', actionRouter)
+//use
 server.get('/', (req,res) => {
     res.send('Server is Available')})
+//initial connect
